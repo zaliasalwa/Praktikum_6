@@ -1,1 +1,27 @@
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Percabangan JavaScript</title>
+    </head>
+    <body>
+          <p>
+              <script language="JavaScript">
+                  const members = {
+                    "Lena": true,
+                    "Rio": false
+                  };
 
+                function checkDiscount(name) {
+                  if (members[name]) {
+                    console.log(name + " Mendapatkan diskon 5%");
+                  } else {
+                    console.log(name + " Tidak mendapatkan diskon");
+                  }
+                }
+
+                checkDiscount("Lena");
+                checkDiscount("Rio");
+              </script>
+          </p>
+    </body>
+</html>
