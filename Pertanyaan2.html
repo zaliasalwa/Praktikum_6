@@ -3,47 +3,37 @@
 <head>
     <title>Status Kelulusan Siswa</title>
 </head>
+<body>
     <script>
-        const standarKelulusan = 60;
         const siswa = [
-            { nama: "Andi", nilai: { mtk: 70, biologi: 80, fisika: 70, kimia: 90 } },
-            { nama: "Ria", nilai: { mtk: 90, biologi: 65, fisika: 80, kimia: 70 } },
-            { nama: "Bima", nilai: { mtk: 100, biologi: 70, fisika: 95, kimia: 50 } },
-            { nama: "Toni", nilai: { mtk: 60, biologi: 60, fisika: 70, kimia: 60 } },
-            { nama: "Putri", nilai: { mtk: 70, biologi: 100, fisika: 80, kimia: 75 } }
+            { nama: "Andi", nilai: [70, 80, 70, 90] },
+            { nama: "Ria", nilai: [90, 65, 80, 70] },
+            { nama: "Bima", nilai: [100, 70, 95, 50] },
+            { nama: "Toni", nilai: [60, 60, 70, 60] },
+            { nama: "Putri", nilai: [70, 100, 80, 75] }
         ];
-        
-        function cekLulus(siswa) {
-            const { mtk, biologi, fisika, kimia } = siswa.nilai;
-            return mtk >= standarKelulusan && biologi >= standarKelulusan && fisika >= standarKelulusan && kimia >= standarKelulusan;
-        }
 
-        function cekSiswa() {
-            let lulus = true;
-            let tidakLulus = true;
-            let siswaLulus = [];
-            let siswaTidakLulus = [];
+        const standarKelulusan = 60;
+        let lulus = [];
+        let tidakLulus = [];
 
-            siswa.forEach(siswa => {
-                if (cekSiswa(siswa)) {
-                    siswaLulus.push(siswa.nama);
-                    tidakLulus = false;
-                } else {
-                    siswaTidakLulus.push(siswa.nama);
-                    lulus = false;
-                }
-            });
-
-            console.log("Hasil kelulusan siswa:");
-            if (lulus) {
-                console.log("Semua Lulus");
-            } else if (tidakLulus) {
-                console.log("Semua Tidak Lulus");
+        siswa.forEach(s => {
+            const semuaLulus = s.nilai.every(n => n >= standarKelulusan);
+            if (semuaLulus) {
+                lulus.push(s.nama);
             } else {
-                console.log("Siswa yang lulus: " + siswaLulus.join(", "));
-                console.log("Siswa yang tidak lulus: " + siswaTidakLulus.join(", "));
+                tidakLulus.push(s.nama);
             }
+        });
 
-        window.onload = cekSiswa;
+        if (lulus.length === siswa.length) {
+            console.log("Semua Lulus");
+        } else if (tidakLulus.length === siswa.length) {
+            console.log("Semua Tidak Lulus");
+        } else {
+            console.log("Siswa yang Lulus: " + lulus.join(", "));
+            console.log("Siswa yang Tidak Lulus: " + tidakLulus.join(", "));
+        }
     </script>
+</body>
 </html>
