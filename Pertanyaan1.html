@@ -1,34 +1,25 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengecekan Membership Restoran</title>
+</head>
     <script>
-        // Daftar pelanggan dengan membership
-        const members = {
-            "Lena": true,
-            "Rio": false
+        const costumers = {
+           name: "Lena": true,
+           name: "Rio": false
         };
 
-        // Fungsi untuk mengecek membership dan menampilkan diskon
-        function checkDiscount(name) {
-            if (members[name]) {
+        function checkMembership(name) {
+            if (costumers[name]) {
                 console.log(name + " Mendapatkan diskon 5%");
             } else {
                 console.log(name + " Tidak mendapatkan diskon");
             }
         }
 
-        // Kasus dijalankan saat halaman di-load
         window.onload = function() {
-            checkDiscount("Lena");
-            checkDiscount("Rio");
+            checkMembership("Lena");
+            checkMembership("Rio");
         };
     </script>
-</head>
-<body>
-    <h1>Pengecekan Membership Restoran</h1>
-    <p>Hasil pengecekan akan ditampilkan di console browser.</p>
-</body>
 </html>
