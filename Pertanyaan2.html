@@ -1,46 +1,73 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Status Kelulusan Siswa</title>
-</head>
     <script>
-        window.onload = function() {
-            const siswa = [
-                { nama: 'Andi', nilai: { matematika: 70, biologi: 80, fisika: 70, kimia: 90 } },
-                { nama: 'Ria', nilai: { matematika: 90, biologi: 65, fisika: 80, kimia: 70 } },
-                { nama: 'Bima', nilai: { matematika: 100, biologi: 70, fisika: 95, kimia: 50 } },
-                { nama: 'Toni', nilai: { matematika: 60, biologi: 60, fisika: 70, kimia: 60 } },
-                { nama: 'Putri', nilai: { matematika: 70, biologi: 100, fisika: 80, kimia: 75 } }
-            ];
+        // Standar kelulusan
+        const passingGrade = 60;
 
-            const standarKelulusan = 60;
-            function cekKelulusan(nilai) {
-                return nilai.matematika >= standarKelulusan &&
-                       nilai.biologi >= standarKelulusan &&
-                       nilai.fisika >= standarKelulusan &&
-                       nilai.kimia >= standarKelulusan;
-            }
-          
-            let lulus = [];
-            let tidakLulus = [];
+        // Data siswa
+        const students = [
+            { name: "Andi", scores: { math: 70, biology: 80, physics: 70, chemistry: 90 } },
+            { name: "Ria", scores: { math: 90, biology: 65, physics: 80, chemistry: 70 } },
+            { name: "Bima", scores: { math: 100, biology: 70, physics: 95, chemistry: 50 } },
+            { name: "Toni", scores: { math: 60, biology: 60, physics: 70, chemistry: 60 } },
+            { name: "Putri", scores: { math: 70, biology: 100, physics: 80, chemistry: 75 } }
+        ];
 
-            siswa.forEach((s) => {
-                if (cekKelulusan(s.nilai)) {
-                    lulus.push(s.nama);
+        // Fungsi untuk mengecek kelulusan
+        function checkPassingStatus(student) {
+            const { math, biology, physics, chemistry } = student.scores;
+            return math >= passingGrade && biology >= passingGrade && physics >= passingGrade && chemistry >= passingGrade;
+        }
+
+        // Mengecek kelulusan semua siswa
+        function evaluateStudents() {
+            let allPassed = true;
+            let allFailed = true;
+            let passedStudents = [];
+            let failedStudents = [];
+
+            students.forEach(student => {
+                if (checkPassingStatus(student)) {
+                    passedStudents.push(student.name);
+                    allFailed = false;
                 } else {
-                    tidakLulus.push(s.nama);
+                    failedStudents.push(student.name);
+                    allPassed = false;
                 }
             });
 
-            const resultDiv = document.getElementById('hasil');
-            if (lulus.length === siswa.length) {
-                resultDiv.innerHTML = 'Semua Lulus';
-            } else if (tidakLulus.length === siswa.length) {
-                resultDiv.innerHTML = 'Semua Tidak Lulus';
+            // Menampilkan hasil di console
+            console.log("Hasil kelulusan siswa:");
+            if (allPassed) {
+                console.log("Semua Lulus");
+            } else if (allFailed) {
+                console.log("Semua Tidak Lulus");
             } else {
-                resultDiv.innerHTML = 'Siswa yang lulus: ' + lulus.join(', ') + '<br>' +
-                                      'Siswa yang tidak lulus: ' + tidakLulus.join(', ');
+                console.log("Siswa yang lulus: " + passedStudents.join(", "));
+                console.log("Siswa yang tidak lulus: " + failedStudents.join(", "));
             }
-        };
+
+            // Menampilkan hasil di HTML
+            const resultDiv = document.getElementById("result");
+            if (allPassed) {
+                resultDiv.innerHTML = "<p>Semua Lulus</p>";
+            } else if (allFailed) {
+                resultDiv.innerHTML = "<p>Semua Tidak Lulus</p>";
+            } else {
+                resultDiv.innerHTML = `<p>Siswa yang lulus: ${passedStudents.join(", ")}</p>`;
+                resultDiv.innerHTML += `<p>Siswa yang tidak lulus: ${failedStudents.join(", ")}</p>`;
+            }
+        }
+
+        window.onload = evaluateStudents;
     </script>
+</head>
+<body>
+    <h1>Status Kelulusan Siswa</h1>
+    <div id="result"></div>
+</body>
 </html>
