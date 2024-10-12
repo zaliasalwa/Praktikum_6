@@ -7,13 +7,9 @@
     <script>
         function hitungTotalPembelian(hargaBarang, jumlahBarang) {
           let totalHarga = hargaBarang * jumlahBarang;
-
           let diskon = 0;
- 
           if (jumlahBarang > 50) {
-            diskon = totalHarga * 0.10; 
-          }
-
+            diskon = totalHarga * 0.10;}
           let hargaSetelahDiskon = totalHarga - diskon;
 
           alert("Harga keseluruhan tanpa diskon: Rp " + totalHarga);
@@ -25,6 +21,5 @@
         let jumlahBarang = parseInt(prompt("Masukkan jumlah barang yang dibeli:"));
 
         hitungTotalPembelian(hargaBarang, jumlahBarang);
-
     </script>
 </html>
