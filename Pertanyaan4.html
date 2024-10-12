@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Perhitungan Diskon Toko</title>
+</head>
+    <script>
+        function hitungTotalPembelian(hargaBarang, jumlahBarang) {
+          let totalHarga = hargaBarang * jumlahBarang;
+
+          let diskon = 0;
+ 
+          if (jumlahBarang > 50) {
+            diskon = totalHarga * 0.10; 
+          }
+
+          let hargaSetelahDiskon = totalHarga - diskon;
+
+          alert("Harga keseluruhan tanpa diskon: Rp " + totalHarga);
+          alert("Diskon yang diberikan: Rp " + diskon);
+          alert("Harga setelah diskon: Rp " + hargaSetelahDiskon);
+          }
+
+        let hargaBarang = parseFloat(prompt("Masukkan harga barang:"));
+        let jumlahBarang = parseInt(prompt("Masukkan jumlah barang yang dibeli:"));
+
+        hitungTotalPembelian(hargaBarang, jumlahBarang);
+
+    </script>
+</html>
