@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Perhitungan Bonus Salon</title>
+</head>
+    <script>
+        function hitungBonus() {
+          var totalKunjungan = parseInt(prompt("Masukkan jumlah kunjungan ke salon:"));
+
+          var jumlahKupon = totalKunjungan;
+          var bonus = Math.floor(jumlahKupon / 10);
+          var kunjunganGratis = bonus > 0 ? "Ya" : "Tidak";
+
+        alert(
+          "Total kunjungan: " + totalKunjungan + "\n" +
+          "Jumlah potongan kupon: " + jumlahKupon + "\n" +
+          "Sudah bisa mendapatkan kunjungan gratis: " + kunjunganGratis
+          );
+        }
+
+        hitungBonus();
+    </script>
+</html>
